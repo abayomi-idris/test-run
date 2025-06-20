@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Deploy to ALL Environments') {
+            steps {
+                script {
+                    def environments = ['dev', 'staging', 'production']
+
+                    environments.each { env ->
+                        echo "Deploying app to ${env} environment"
+                        sh "echo 'Running deploy script for ${env}'"
+                        echo "Deployment to ${env} completed"
+                    }
+                }
+            }
+        }
+    }
+}
